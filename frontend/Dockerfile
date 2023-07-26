@@ -1,0 +1,21 @@
+# Use uma imagem Node.js como base
+FROM node:alpine
+
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia os arquivos necessários para o contêiner
+COPY package.json package-lock.json /app/
+COPY . /app/
+
+# Instala as dependências
+RUN npm install
+
+# Compila o projeto Next.js
+RUN npm run build
+
+# Expõe a porta em que o servidor do Next.js estará escutando
+EXPOSE 3000
+
+# Comando para iniciar o servidor
+CMD ["npm", "start"]
