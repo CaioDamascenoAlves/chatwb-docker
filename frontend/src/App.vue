@@ -9,8 +9,18 @@ const messages = ref([]);
 onBeforeMount(() => {
   socket.emit('findAllMessages', {}, (response) => {
     messages.value = response;
+  });
+
+  socket.on('message', (message) => {
+    messages.value.push(message);
   })
 });
+
+const sendMessage = () => {
+  socket.emit('createMessage', { text: message.value}, () => {
+    messages.value.push(response)
+  })
+}
 </script>
 
 <template>
