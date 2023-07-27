@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EventsModule } from './chat/events.module';
-import { IoAdapter } from '@nestjs/platform-socket.io';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
-  imports: [EventsModule],
+  imports: [MessagesModule],
   controllers: [AppController],
   providers: [AppService],
 })
